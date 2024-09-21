@@ -15,8 +15,8 @@ This project is an e-commerce backend API built using Django Rest Framework. It 
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/Ashmil114/E-commerce-API.git
+    cd E-commerce-API
     ```
 
 2. **Create and activate a virtual environment**:
