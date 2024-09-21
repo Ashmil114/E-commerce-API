@@ -1,0 +1,661 @@
+openapi: 3.0.3
+info:
+  title: API Documentation
+  version: 0.0.0
+paths:
+  /api/customer/logout:
+    post:
+      operationId: customer_logout_create
+      tags:
+      - customer
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/customer/ping:
+    get:
+      operationId: customer_ping_retrieve
+      tags:
+      - customer
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/customer/token/refresh:
+    post:
+      operationId: customer_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/customer/user:
+    get:
+      operationId: customer_user_retrieve
+      tags:
+      - customer
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: customer_user_update
+      tags:
+      - customer
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/customer/validate-verification-code:
+    post:
+      operationId: customer_validate_verification_code_create
+      tags:
+      - customer
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/customer/verification-code:
+    post:
+      operationId: customer_verification_code_create
+      tags:
+      - customer
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_serializer'
+          description: ''
+  /api/product/:
+    get:
+      operationId: product_list
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+      - in: query
+        name: district
+        schema:
+          type: string
+      - in: query
+        name: pincode
+        schema:
+          type: string
+      tags:
+      - product
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product_serializer'
+          description: ''
+  /api/product/{id}:
+    get:
+      operationId: product_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tb_product.
+        required: true
+      tags:
+      - product
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product_serializer'
+          description: ''
+  /api/product/ping:
+    get:
+      operationId: product_ping_retrieve
+      tags:
+      - product
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/product/sub-category/:
+    get:
+      operationId: product_sub_category_list
+      parameters:
+      - in: query
+        name: district
+        schema:
+          type: string
+      tags:
+      - product
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product_subcategory_serializers'
+          description: ''
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/seller/ping:
+    get:
+      operationId: seller_ping_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/wishlist/:
+    get:
+      operationId: wishlist_list
+      parameters:
+      - in: query
+        name: district
+        schema:
+          type: string
+      tags:
+      - wishlist
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/wishlist_serializer'
+          description: ''
+  /api/wishlist/add:
+    post:
+      operationId: wishlist_add_create
+      tags:
+      - wishlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                district:
+                  type: string
+              required:
+              - title
+              - district
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/wishlist_serializer'
+          description: ''
+  /api/wishlist/item:
+    post:
+      operationId: wishlist_item_create
+      tags:
+      - wishlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wishlist_id:
+                  type: string
+                  format: uuid
+                product_id:
+                  type: string
+                  format: uuid
+                quantity:
+                  type: integer
+              required:
+              - wishlist_id
+              - product_id
+              - quantity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: ''
+    delete:
+      operationId: wishlist_item_destroy
+      tags:
+      - wishlist
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: ''
+  /api/wishlist/ping:
+    get:
+      operationId: wishlist_ping_retrieve
+      tags:
+      - wishlist
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    customer_serializer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        phone:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 250
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        on_boarded:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - created
+      - email
+      - id
+      - name
+      - phone
+    product_category_serializers:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 250
+      required:
+      - id
+      - title
+    product_serializer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        title:
+          type: string
+        price:
+          type: integer
+        unit:
+          type: string
+          maxLength: 50
+        stock:
+          type: integer
+        sub_category:
+          allOf:
+          - $ref: '#/components/schemas/product_subcategory_serializers'
+          readOnly: true
+        seller:
+          $ref: '#/components/schemas/seller_serializer'
+      required:
+      - id
+      - price
+      - seller
+      - stock
+      - sub_category
+      - title
+      - unit
+    product_subcategory_serializers:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 250
+        image:
+          type: string
+          format: uri
+          nullable: true
+        category:
+          allOf:
+          - $ref: '#/components/schemas/product_category_serializers'
+          readOnly: true
+      required:
+      - category
+      - id
+      - title
+    seller_serializer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        phone:
+          type: string
+          maxLength: 10
+        shop_name:
+          type: string
+          maxLength: 250
+        owner_name:
+          type: string
+          maxLength: 250
+        category:
+          allOf:
+          - $ref: '#/components/schemas/shop_category_serializers'
+          readOnly: true
+        district:
+          type: string
+          maxLength: 250
+        city:
+          type: string
+          maxLength: 250
+        pincode:
+          type: string
+          maxLength: 250
+      required:
+      - category
+      - city
+      - district
+      - id
+      - owner_name
+      - phone
+      - pincode
+      - shop_name
+    shop_category_serializers:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+      required:
+      - id
+      - name
+    wishlist_item_serializer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/product_serializer'
+        quantity:
+          type: integer
+        total_price:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - product
+      - quantity
+      - total_price
+    wishlist_serializer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 250
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/wishlist_item_serializer'
+          readOnly: true
+        number_of_items:
+          type: string
+          readOnly: true
+        total_price:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - items
+      - number_of_items
+      - title
+      - total_price
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
