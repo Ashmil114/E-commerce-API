@@ -70,6 +70,33 @@ This project is an e-commerce backend API built using Django Rest Framework. It 
 - **GET** `/api/products/{id}/` - Retrieve a product by ID.
 - **PUT** `/api/products/{id}/` - Update a product by ID.
 - **DELETE** `/api/products/{id}/` - Delete a product by ID.
+  #### Product API Structure
+  `
+  {
+    "id": "127a4737-8eea-4e16-a259-71ebad44ad59",
+    "image": http://127.0.0.1:8000/media/image/127a4737-8eea-4e16-a259-71ebad44ad59.webp,
+    "title": "Orange",
+    "price": 100,
+    "mrp": 120,
+    "discount": 16,
+    "fixed_quantity": 1,
+    "unit": "kg",
+    "allowed_limit": 1,
+    "stock": 50,
+    "sub_category": {
+        "id": "261de795-465f-47d8-bb10-6a28d7bb98fb",
+        "title": "Fruits & Vegtables",
+        "image": null,
+        "emoji": "🛒",
+        "category": {
+            "id": "a3baf5d3-85f5-4dfc-81c5-53142af75007",
+            "title": "Fruits & Vegtables"
+        }
+    },
+    "in_wishlist": false,
+    "is_active": true
+  }
+  `
 
 ### Wishlist
 
