@@ -111,6 +111,31 @@ This project is an e-commerce backend API built using Django Rest Framework. It 
 - **GET** `/api/order/{id}/` - Retrieve an order by ID.
 - **PUT** `/api/order/status/{id}` - Update Status of an order by ID.
 - **PUT** `/api/order/cancel-order/{id}/` - Cancel an order by ID.
+  #### Order API Structure
+  `
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "order_id": "OD202409213fa85f64",
+    "order_date": "2024-09-21T07:44:03.772Z",
+    "status": "processing",
+    "buy_price": "200",
+    "can_cancel": true,
+    "items": [
+      {
+        "product": {
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "image": "http://127.0.0.1:8000/media/image/127a4737-8eea-4e16-a259-71ebad44ad59.webp",
+          "title": "Orange",
+          "stock": 100
+        },
+        "quantity": 2,
+        "buy_price": "100",
+        "buy_total_price": "200"
+      }
+    ],
+    "total_quantity": "1"
+  }
+  `
 
 ### Block Area
 
