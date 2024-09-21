@@ -10,6 +10,11 @@ This project is an e-commerce backend API built using Django Rest Framework. It 
 - **Authentication**: Simple JWT authentication with phone OTP.
 - **API Documentation**: Comprehensive API documentation using drf-spectacular.
 - **Database**: PostgreSQL.
+- **Additional Features**:
+  - Block Area: Check whether a district or pincode is blocked.
+  - Product Seller Details: View details of product sellers.
+  - User Details: Manage user information.
+  - User Multiple Shopping Addresses: Manage multiple shopping addresses for users.
 
 ## Installation
 
@@ -32,6 +37,7 @@ This project is an e-commerce backend API built using Django Rest Framework. It 
 
 4. **Set up the PostgreSQL database**:
     - Create a PostgreSQL database and update the `DATABASES` setting in `settings.py` with your database credentials.
+    - Change example.env to .env then add Database configurations
 
 5. **Run migrations**:
     ```bash
@@ -78,6 +84,30 @@ This project is an e-commerce backend API built using Django Rest Framework. It 
 - **GET** `/api/order/{id}/` - Retrieve an order by ID.
 - **PUT** `/api/order/status/{id}` - Update Status of an order by ID.
 - **PUT** `/api/order/cancel-order/{id}/` - Cancel an order by ID.
+
+### Block Area
+
+- **GET** `/api/block-area/` - Check if a district or pincode is blocked.
+
+### Product Seller Details
+
+- **GET** `/api/sellers/` - List all product sellers.
+- **GET** `/api/sellers/{id}/` - Retrieve seller details by ID.
+
+### User Details
+
+- **GET** `/api/customer/user` - Retrieve user details
+- **PUT** `/api/customer/user` - Update user details.
+
+### User Multiple Shopping Addresses
+
+- **GET** `/api/customer/address` - List all shopping addresses.
+- **POST** `/api/customer/add-address` - Add a new shopping address.
+- **GET** `/api/customer/address/{id}` - Retrieve a shopping address by ID.
+- **PUT** `/api/customer/address/{id}` - Update a shopping address by ID.
+- **PATCH** `/api/customer/address/{id}` - Update Specific shopping address data by ID.
+- **DELETE** `/api/customer/address/{id}` - Delete a shopping address by ID.
+
 
 ## API Documentation
 
